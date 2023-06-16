@@ -12,12 +12,11 @@ export default function TodoAddForm({ handleAddTodo }: Props) {
     e.preventDefault();
     // console.log(addText.replaceAll(" ", ""));
     handleAddTodo({
-      id: "고유한값",
       text: addText.replaceAll(" ", ""),
       status: "active",
     });
 
-    setAddText(() => "");
+    setAddText("");
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +34,7 @@ export default function TodoAddForm({ handleAddTodo }: Props) {
         type="text"
         name="AddTodo"
         placeholder="Add Todo"
+        value={addText}
         onChange={handleChange}
       />
       <button disabled={disabledBtn()}>Add</button>
