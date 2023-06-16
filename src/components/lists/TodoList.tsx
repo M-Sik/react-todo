@@ -16,11 +16,20 @@ export default function TodoList() {
     setTodos((prev) => [...prev, todo]);
   };
 
+  const handleDelete = (text: string) => {
+    setTodos((prev) => prev.filter((prevTodo) => prevTodo.text !== text));
+  };
+
   return (
     <section>
       <ul>
         {todos.map(({ text, status }, index) => (
-          <li key={`${index}${text}`}>{text}</li>
+          <li key={`${text}`}>
+            {text}{" "}
+            <span>
+              <button onClick={() => handleDelete(text)}>삭제</button>
+            </span>
+          </li>
         ))}
       </ul>
       <TodoAddForm handleAddTodo={handleAddTodo} />
