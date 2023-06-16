@@ -3,10 +3,19 @@ import TodoAddForm from "../forms/TodoAddForm";
 
 export type Todo = {
   text: string;
-  status: string;
+  status: "all" | "completed" | "active";
 };
 
-export default function TodoList() {
+type Props = {
+  filter: "all" | "completed" | "active";
+};
+
+const filterd = (todos: Todo[], filter: "all" | "completed" | "active") => {
+  if (filter === "all") return todos;
+  return todos.filter((todo) => todo.status === filter);
+};
+
+export default function TodoList({ filter }: Props) {
   const [todos, setTodos] = useState<Todo[]>([
     { text: "장보기", status: "active" },
     { text: "공부하기", status: "active" },
@@ -36,7 +45,7 @@ export default function TodoList() {
   return (
     <section>
       <ul>
-        {todos.map(({ text, status }, index) => (
+        {filterd(todos, filter).map(({ text, status }) => (
           <li key={`${text}`}>
             <input
               type="checkbox"
