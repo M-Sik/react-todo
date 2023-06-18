@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Todo } from "../lists/TodoList";
+import Styles from "./TodoAddForm.module.css";
 
 type Props = {
   handleAddTodo: (todo: Todo) => void;
@@ -29,15 +30,18 @@ export default function TodoAddForm({ handleAddTodo }: Props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={Styles["container"]}>
       <input
         type="text"
         name="AddTodo"
         placeholder="Add Todo"
         value={addText}
         onChange={handleChange}
+        className={Styles["add-input"]}
       />
-      <button disabled={disabledBtn()}>Add</button>
+      <button disabled={disabledBtn()} className={Styles["add-btn"]}>
+        Add
+      </button>
     </form>
   );
 }
