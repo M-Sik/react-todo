@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  border-bottom: 1px solid var(--color-grey);
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+
+.filter-btn {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
