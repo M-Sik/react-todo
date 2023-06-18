@@ -1,0 +1,21 @@
+.container {
+  height: calc(60vh - 49px);
+  display: flex;
+  flex-direction: column;
+  /* flex: 1 1 auto; */
+  justify-content: space-between;
+}
+
+.wrap-todo-items {
+  height: 50vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import TodoAddForm from "../forms/TodoAddForm";
+import Styles from "./TodoList.module.css";
 
 export type Todo = {
   text: string;
@@ -43,10 +44,10 @@ export default function TodoList({ filter }: Props) {
   };
 
   return (
-    <section>
-      <ul>
+    <section className={Styles["container"]}>
+      <ul className={Styles["wrap-todo-items"]}>
         {filterd(todos, filter).map(({ text, status }) => (
-          <li key={`${text}`}>
+          <li key={`${text}`} className={Styles["todo-item"]}>
             <input
               type="checkbox"
               id="checkbox"
