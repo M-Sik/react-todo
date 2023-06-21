@@ -5,6 +5,12 @@
   --color-text: #22243b;
   --color-accent: #f16e03;
 }
+/* html에 dark라는 클래스가 있다면 변수 값(색깔) 변경 */
+html.dark {
+  --color-bg-dark: #1a1c35;
+  --color-bg: #22243b;
+  --color-text: #ffffff;
+}
 
 body {
   margin: 0;
