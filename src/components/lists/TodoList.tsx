@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import TodoAddForm from "../forms/TodoAddForm";
 import Styles from "./TodoList.module.css";
 
@@ -15,12 +15,14 @@ const filterd = (todos: Todo[], filter: "all" | "completed" | "active") => {
   if (filter === "all") return todos;
   return todos.filter((todo) => todo.status === filter);
 };
+// 로컬스토리지에 todos의 값이 있다면 todos 리턴, 없다면 빈배열 리턴
+function readTodosFromLocalStorage() {
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
+}
 
 export default function TodoList({ filter }: Props) {
-  const [todos, setTodos] = useState<Todo[]>([
-    { text: "장보기", status: "active" },
-    { text: "공부하기", status: "active" },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>(() => readTodosFromLocalStorage());
 
   const handleAddTodo = (todo: Todo) => {
     setTodos((prev) => [...prev, todo]);
@@ -42,6 +44,10 @@ export default function TodoList({ filter }: Props) {
       )
     );
   };
+  // 마운트시, todos변경시 로컬스토리지에 todos 키로 저장
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <section className={Styles["container"]}>
