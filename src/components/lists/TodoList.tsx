@@ -56,11 +56,11 @@ export default function TodoList({ filter }: Props) {
           <li key={`${text}`} className={Styles["todo-item"]}>
             <input
               type="checkbox"
-              id="checkbox"
+              id={`checkbox${text}`}
               checked={status === "completed"}
               onChange={(e) => handleChangeCheckBox(e, text)}
             />
-            <label htmlFor="checkbox">{text}</label>
+            <label htmlFor={`checkbox${text}`}>{text}</label>
             <span>
               <button onClick={() => handleDelete(text)}>삭제</button>
             </span>
